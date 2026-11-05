@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bgnacinski.github.io/sitemap.xml

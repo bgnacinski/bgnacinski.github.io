@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Borys Gnaciński</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f3f0e9">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    (() => {
+      document.documentElement.classList.add('js');
+      let stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (error) { /* storage may be unavailable */ }
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      const theme = stored || (prefersLight ? 'light' : 'dark');
+      document.documentElement.dataset.theme = theme;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', theme === 'light' ? '#f3f0e9' : '#121311');
+    })();
+  </script>
+</head>
+<body>
+  <main id="main" class="not-found">
+    <div class="shell not-found-inner">
+      <p class="meta">404 / Not found</p>
+      <h1>This page is <em>off the line.</em></h1>
+      <p class="not-found-copy">The address isn’t part of the route. Head back to the profile, or take another look at Conductor.</p>
+      <div class="actions">
+        <a class="button" href="/">Back to profile <span aria-hidden="true">→</span></a>
+        <a class="link" href="/conductor/">Visit Conductor <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="not-found-foot">
+        <span>Borys Gnaciński</span>
+        <span>Wrocław, Poland</span>
+        <span>Site written by the AI model DeepSeek V4.1 Flash</span>
+      </div>
+    </div>
+  </main>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
