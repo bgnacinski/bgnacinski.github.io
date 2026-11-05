@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="pl" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conductor — Contactless Fare-Payment Stack · Borys Gnaciński</title>
-  <meta name="description" content="Conductor is a contactless fare-payment demo built from three services: a Python fare card, a Python gate with an offline-first SQLite outbox, and a PHP API.">
+  <title>Conductor — Stack Bezdotykowej Autoryzacji Przejazdów · Borys Gnaciński</title>
+  <meta name="description" content="Conductor to demonstracja systemu bezdotykowej autoryzacji przejazdów zbudowana z trzech usług: klienta karty w Pythonie, bramy w Pythonie z offline-first SQLite outbox oraz API w PHP.">
   <meta name="author" content="Borys Gnaciński">
   <meta name="theme-color" content="#f3f0e9">
   <meta name="color-scheme" content="light dark">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Conductor — Contactless Fare-Payment Stack">
-  <meta property="og:description" content="A fare card, a gate, and an API that agree — even when the network doesn’t. SSH certificates, nonce challenges, and an offline-first outbox.">
+  <meta property="og:title" content="Conductor — Stack Bezdotykowej Autoryzacji Przejazdów">
+  <meta property="og:description" content="Karta, brama i API, które osiągają konsensus nawet przy braku łączności. Certyfikaty SSH, wyzwania nonce i offline-first outbox.">
   <meta property="og:url" content="https://bgnacinski.github.io/conductor/">
   <meta property="og:image" content="https://bgnacinski.github.io/assets/og-conductor.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Conductor — a contactless fare-payment stack built end to end.">
+  <meta property="og:image:alt" content="Conductor — stack bezdotykowej autoryzacji przejazdów zbudowany end-to-end.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://bgnacinski.github.io/assets/og-conductor.png">
 
@@ -25,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.tailwindcss.com">
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <script>
@@ -45,7 +46,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     "name": "Conductor",
-    "description": "A contactless fare-payment demo with a Python card client, a Python gate server with an offline-first SQLite outbox, and a PHP API.",
+    "description": "Demonstracja bezdotykowej autoryzacji przejazdów z klientem karty w Pythonie, serwerem bramy w Pythonie z offline-first SQLite outbox oraz API w PHP.",
     "codeRepository": [
       "https://github.com/bgnacinski/conductor-api",
       "https://github.com/bgnacinski/conductor-ticketer",
@@ -62,29 +63,29 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
 
   <header class="site-header" data-header>
     <div class="shell header-inner">
-      <a class="brand" href="../" aria-label="Borys Gnaciński — home">
+      <a class="brand" href="../" aria-label="Borys Gnaciński — strona główna">
         <span class="brand-name">Borys Gnaciński</span>
         <span class="brand-role">Conductor</span>
       </a>
 
-      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-        <a href="../">Profile</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#tap">How it works</a>
-        <a href="#repositories">Repositories</a>
+      <nav class="site-nav" id="site-nav" aria-label="Główna nawigacja">
+        <a href="../">Profil</a>
+        <a href="#architecture">Architektura</a>
+        <a href="#tap">Jak to działa</a>
+        <a href="#repositories">Repozytoria</a>
       </nav>
 
       <div class="header-actions">
         <a class="header-github" href="https://github.com/bgnacinski" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-        <button class="icon-btn theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+        <button class="icon-btn theme-toggle" type="button" aria-label="Zmień motyw kolorystyczny" title="Zmień motyw kolorystyczny">
           <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5 6.8 6.8 0 0 0 20.5 14.2Z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         </button>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="site-nav">
           <span>Menu</span>
           <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
         </button>
@@ -95,115 +96,113 @@
   <main id="main">
     <section class="project-hero shell" aria-labelledby="project-title">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../">Profile</a>
+        <a href="../">Profil</a>
         <span aria-hidden="true">/</span>
         <span aria-current="page">Conductor</span>
       </nav>
 
       <div class="project-hero-grid">
         <div class="project-title">
-          <p class="meta">Open-source project / 2026</p>
+          <p class="meta">Projekt Open-source / 2026</p>
           <h1 id="project-title">Conductor</h1>
-          <p class="project-tagline">A contactless fare-payment stack, built end to end.</p>
+          <p class="project-tagline">Kompletny system obsługi transportu publicznego.</p>
         </div>
 
         <dl class="project-specs">
-          <div><dt>Type</dt><dd>Working demo</dd></div>
-          <div><dt>Services</dt><dd>Three</dd></div>
           <div><dt>Stack</dt><dd>Python · PHP</dd></div>
-          <div><dt>License</dt><dd>MIT</dd></div>
+          <div><dt>Licencja</dt><dd>MIT</dd></div>
         </dl>
       </div>
 
       <aside class="ai-notice-block" aria-label="AI disclosure">
         <div class="ai-notice">
-          <p class="ai-notice-label">AI disclosure</p>
-          <p>Conductor is hand-written. Gemini and Claude assisted with selected technical decisions — how to prepare the
-            SQLite database for offline use (WAL mode and related settings) and implementations of some cryptography concepts.
-            DeepSeek V4.1 Flash was used to generate this page along with READMEs of 3 repositories
+          <p class="ai-notice-label">Informacja o AI</p>
+          <p>Conductor jest napisany ręcznie. Modele Gemini i Claude wspierały niektóre decyzje techniczne — sposób przygotowania
+            bazy danych SQLite do pracy w trybie zanikającego zasilania (tryb WAL i inne ustawienia) oraz implementacje wybranych koncepcji kryptograficznych.
+            DeepSeek V4.1 Flash oraz Gemma 4 zostały wykorzystane do wygenerowania tej strony oraz plików README w repozytoriach.
           </p>
         </div>
       </aside>
 
       <div class="project-intro-row">
         <p class="project-intro">
-          Three services, one handshake. A mock fare card proves who it is with an SSH certificate,
-          a gate verifies it and challenges the card for proof of possession, and an API collects
-          the taps — with an offline-first outbox so a dropped connection never drops a fare.
+          Trzy usługi, jeden handshake. Symulowana karta przejazdowa potwierdza tożsamość za pomocą certyfikatu SSH,
+          brama weryfikuje go i wyzywa kartę do dowodu posiadania klucza, a API gromadzi zdarzenia „tap” — z wykorzystaniem
+          offline-first outbox, dzięki czemu przerwa w łączności nigdy nie powoduje utraty danych.
         </p>
         <div class="actions">
-          <a class="button" href="#architecture">See the architecture <span aria-hidden="true">↓</span></a>
-          <a class="link" href="#repositories">Repositories <span aria-hidden="true">↓</span></a>
+          <a class="button" href="#architecture">Zobacz architekturę <span aria-hidden="true">↓</span></a>
+          <a class="link" href="#repositories">Repozytoria <span aria-hidden="true">↓</span></a>
         </div>
       </div>
 
-      <div class="system-map" role="img" aria-label="Architecture: the fare card connects to the gate over TCP port 2137 with a certificate, nonce, and signature. The gate syncs queued taps to the API over HTTPS.">
+      <div class="system-map" role="img" aria-label="Architektura: karta łączy się z bramą przez TCP port 2137 z certyfikatem, nonce i podpisem. Brama synchronizuje kolejkowane zdarzenia z API przez HTTPS.">
         <div class="system-map-head">
-          <span>Request path</span>
+          <span>Ścieżka żądania</span>
           <span>TCP :2137 → HTTPS</span>
         </div>
         <div class="flow">
           <div class="flow-node">
             <span class="flow-num">01</span>
-            <span class="flow-name">Fare card</span>
+            <span class="flow-name">Karta przejazdowa</span>
             <span class="flow-repo">conductor-ticketer-client</span>
-            <span class="flow-role">Client</span>
+            <span class="flow-role">Klient</span>
           </div>
           <div class="flow-link">
-            <span>certificate</span>
+            <span>certyfikat</span>
             <span>nonce</span>
-            <span>signature</span>
+            <span>podpis</span>
           </div>
           <div class="flow-node">
             <span class="flow-num">02</span>
-            <span class="flow-name">Gate</span>
+            <span class="flow-name">Brama</span>
             <span class="flow-repo">conductor-ticketer</span>
-            <span class="flow-role">Verifier</span>
+            <span class="flow-role">Weryfikator</span>
           </div>
           <div class="flow-link">
-            <span>queued tap</span>
-            <span>batched sync</span>
+            <span>kolejkowane zdarzenie</span>
+            <span>synchronizacja batchowa</span>
             <span>ack</span>
           </div>
           <div class="flow-node">
             <span class="flow-num">03</span>
             <span class="flow-name">API</span>
             <span class="flow-repo">conductor-api</span>
-            <span class="flow-role">Record</span>
+            <span class="flow-role">Rejestr</span>
           </div>
         </div>
-        <p class="system-map-note">The gate stays online when the API doesn’t. Sync picks up where it left off.</p>
+        <p class="system-map-note">Brama pozostaje online, gdy API jest niedostępne. Synchronizacja wznawia pracę z miejsca przerwania.</p>
       </div>
 
       <div class="metrics">
-        <div class="metric"><strong>3</strong><span>Services</span></div>
-        <div class="metric"><strong>2</strong><span>Languages</span></div>
+        <div class="metric"><strong>3</strong><span>Usługi</span></div>
+        <div class="metric"><strong>2</strong><span>Języki</span></div>
         <div class="metric"><strong>1</strong><span>TCP handshake</span></div>
-        <div class="metric"><strong>0</strong><span>Taps lost to an outage</span></div>
+        <div class="metric"><strong>0</strong><span>Zdarzeń utraconych podczas awarii</span></div>
       </div>
     </section>
 
     <section class="section shell" id="architecture">
       <header class="section-head">
         <p class="section-index">01</p>
-        <h2>Architecture</h2>
-        <p class="section-note">Each piece does one job well: the card proves identity, the gate decides access, and the API owns the record.</p>
+        <h2>Architektura</h2>
+        <p class="section-note">Każdy element realizuje jedno zadanie: karta dowodzi tożsamości, brama decyduje o dostępie, a API zarządza rejestrem.</p>
       </header>
 
       <div class="component-rows">
         <article class="component-row">
           <span class="component-index">01</span>
           <div class="component-heading">
-            <h3>Fare card</h3>
-            <p class="component-role">The client</p>
+            <h3>Karta przejazdowa</h3>
+            <p class="component-role">Klient</p>
             <a class="component-link" href="https://github.com/bgnacinski/conductor-ticketer-client" target="_blank" rel="noopener">conductor-ticketer-client <span aria-hidden="true">↗</span></a>
           </div>
           <div class="component-body">
-            <p>Loads a private key and an SSH certificate, connects to the gate, answers the nonce challenge, and prints the result of the tap.</p>
+            <p>Ładuje klucz prywatny i certyfikat SSH, łączy się z bramą, odpowiada na wyzwanie nonce i wyświetla wynik autoryzacji.</p>
             <ul class="component-points">
-              <li>Ed25519, ECDSA P-256/384/521, or RSA ≥ 2048</li>
-              <li>Signs the challenge with the loaded key</li>
-              <li>Plain TCP to <code>localhost:2137</code></li>
+              <li>Ed25519, ECDSA P-256/384/521 lub RSA ≥ 2048</li>
+              <li>Podpisuje wyzwanie za pomocą załadowanego klucza</li>
+              <li>Proste TCP na <code class="language-text">localhost:2137</code></li>
             </ul>
           </div>
         </article>
@@ -211,16 +210,16 @@
         <article class="component-row">
           <span class="component-index">02</span>
           <div class="component-heading">
-            <h3>Gate</h3>
-            <p class="component-role">The verifier</p>
+            <h3>Brama</h3>
+            <p class="component-role">Weryfikator</p>
             <a class="component-link" href="https://github.com/bgnacinski/conductor-ticketer" target="_blank" rel="noopener">conductor-ticketer <span aria-hidden="true">↗</span></a>
           </div>
           <div class="component-body">
-            <p>An async TCP server that verifies certificates, issues nonce challenges, checks the ban list, and records every accepted tap in a durable outbox.</p>
+            <p>Asynchroniczny serwer TCP, który weryfikuje certyfikaty, generuje wyzwania nonce, sprawdza czarną listę i zapisuje każde zaakceptowane zdarzenie w trwałej kolejce wyjściowej.</p>
             <ul class="component-points">
-              <li>Validates CA signature, validity window, and key strength</li>
-              <li>SQLite outbox survives restarts and outages</li>
-              <li>Background sync with batching and retry backoff</li>
+              <li>Weryfikacja podpisu CA, okna ważności i siły klucza</li>
+              <li>Outbox w SQLite odporny na restarty i awarie</li>
+              <li>Synchronizacja w tle z batchowaniem i wykładniczym czasem oczekiwania (backoff)</li>
             </ul>
           </div>
         </article>
@@ -229,15 +228,15 @@
           <span class="component-index">03</span>
           <div class="component-heading">
             <h3>API</h3>
-            <p class="component-role">The record</p>
+            <p class="component-role">Rejestr</p>
             <a class="component-link" href="https://github.com/bgnacinski/conductor-api" target="_blank" rel="noopener">conductor-api <span aria-hidden="true">↗</span></a>
           </div>
           <div class="component-body">
-            <p>Issues fare cards, serves the CA public key and ban list, and ingests tap events pushed by the gate. Built as a CodeIgniter 4 application.</p>
+            <p>Wystawia karty przejazdowe, udostępnia klucz publiczny CA i czarną listę, oraz przyjmuje zdarzenia „tap” przesyłane przez bramę. Zbudowany w oparciu o CodeIgniter 4.</p>
             <ul class="component-points">
-              <li><code>GET /pubkey</code> — CA public key for the gate</li>
-              <li><code>GET /bans</code> — banned card fingerprints</li>
-              <li><code>POST /log</code> — entry/exit tap ingest</li>
+              <li><code class="language-text">GET /pubkey</code> — klucz publiczny CA dla bramy</li>
+              <li><code class="language-text">GET /bans</code> — odciski palców (fingerprints) zablokowanych kart</li>
+              <li><code class="language-text">POST /log</code> — ingest zdarzeń wejścia/wyjścia</li>
             </ul>
           </div>
         </article>
@@ -247,50 +246,50 @@
     <section class="section shell" id="tap">
       <header class="section-head">
         <p class="section-index">02</p>
-        <h2>How a tap works</h2>
-        <p class="section-note">The gate never trusts a card just because it connected. Identity, possession, and policy are checked in order — then the tap is queued before the gate says yes.</p>
+        <h2>Jak działa autoryzacja (tap)</h2>
+        <p class="section-note">Brama nigdy nie ufa karcie tylko dlatego, że się połączyła. Tożsamość, posiadanie klucza i polityka są sprawdzane sekwencyjnie — a zdarzenie jest kolejkowane przed udzieleniem odpowiedzi.</p>
       </header>
 
       <div class="process-list">
         <article class="process-row">
           <span class="process-num">01</span>
-          <h3>Present the certificate</h3>
-          <p>The card sends its CA-signed SSH certificate over plain TCP. The certificate names the card and carries a validity window.</p>
-          <span class="process-tag">card → gate</span>
+          <h3>Przedstawienie certyfikatu</h3>
+          <p>Karta przesyła swój podpisany przez CA certyfikat SSH przez zwykłe TCP. Certyfikat określa tożsamość karty i zawiera okno ważności.</p>
+          <span class="process-tag">karta → brama</span>
         </article>
 
         <article class="process-row">
           <span class="process-num">02</span>
-          <h3>Verify the issuer and the key</h3>
-          <p>The gate checks the CA signature, the certificate’s validity window, and the public-key algorithm. Weak or unsupported keys are rejected.</p>
-          <span class="process-tag">CA + policy</span>
+          <h3>Weryfikacja wystawcy i klucza</h3>
+          <p>Brama sprawdza podpis CA, okno ważności certyfikatu oraz algorytm klucza publicznego. Słabe lub nieobsługiwane klucze są odrzucane.</p>
+          <span class="process-tag">CA + polityka</span>
         </article>
 
         <article class="process-row">
           <span class="process-num">03</span>
-          <h3>Issue a nonce challenge</h3>
-          <p>A random nonce is sent to the card. A certificate alone is not enough — the card has to prove it holds the matching private key.</p>
-          <span class="process-tag">gate → card</span>
+          <h3>Wyzwanie kryptograficzne</h3>
+          <p>Do karty przesyłany jest losowy nonce. Sam certyfikat nie jest wystarczający — karta musi udowodnić, że posiada klucz prywatny.</p>
+          <span class="process-tag">brama → karta</span>
         </article>
 
         <article class="process-row">
           <span class="process-num">04</span>
-          <h3>Sign and verify</h3>
-          <p>The card signs the nonce with Ed25519, ECDSA, or RSA. The gate verifies the signature against the certified public key.</p>
+          <h3>Podpis i weryfikacja uprawnień</h3>
+          <p>Karta podpisuje nonce za pomocą Ed25519, ECDSA lub RSA. Brama weryfikuje podpis względem certyfikowanego klucza publicznego.</p>
           <span class="process-tag">proof of possession</span>
         </article>
 
         <article class="process-row">
           <span class="process-num">05</span>
-          <h3>Check the ban list</h3>
-          <p>The card’s fingerprint is compared with a locally cached ban list. A valid certificate and signature still lose to a ban.</p>
-          <span class="process-tag">policy</span>
+          <h3>Sprawdzenie czarnej listy</h3>
+          <p>Odcisk palca karty jest porównywany z lokalnie zapisaną czarną listą. Prawidłowy certyfikat i podpis nie chronią przed blokadą.</p>
+          <span class="process-tag">polityka</span>
         </article>
 
         <article class="process-row">
           <span class="process-num">06</span>
-          <h3>Queue, answer, sync</h3>
-          <p>The accepted tap is written to SQLite before the gate responds <code>OK</code>. A background loop pushes it to the API and retries if needed.</p>
+          <h3>Kolejkowanie, odpowiedź, synchronizacja</h3>
+          <p>Zaakceptowane zdarzenie jest zapisywane w SQLite przed udzieleniem odpowiedzi <code class="language-text">OK</code>. Pętla w tle przesyła je do API i ponawia próby w razie potrzeby.</p>
           <span class="process-tag">outbox → API</span>
         </article>
       </div>
@@ -299,43 +298,43 @@
     <section class="section shell" id="protocol">
       <header class="section-head">
         <p class="section-index">03</p>
-        <h2>Protocol</h2>
-        <p class="section-note">No framework magic on the wire: a certificate, a nonce, a signature, and a status line.</p>
+        <h2>Protokół</h2>
+        <p class="section-note">Bez frameworkowej magii na łączu: certyfikat, nonce, podpis i linia statusu.</p>
       </header>
 
       <div class="protocol-grid">
         <div class="code-card">
           <div class="code-head">
             <span>handshake.txt</span>
-            <button class="copy-btn" type="button" data-copy aria-live="polite" aria-label="Copy handshake diagram">Copy</button>
+            <button class="copy-btn" type="button" data-copy aria-live="polite" aria-label="Kopiuj diagram handshake'u">Kopiuj</button>
           </div>
-<pre class="code-block" tabindex="0" role="region" aria-label="Handshake diagram: certificate, nonce, and signature exchange between card and gate"><code>Card                                          Gate
- |                                             |
- |--- CA-signed certificate ------------------>|  parse certificate
- |                                             |  verify CA signature + validity
- |                                             |  check public-key algorithm
- |                                             |
- |&lt;-- random nonce (challenge) ----------------|  or INVALID_CERT / KEY_NOT_SECURE
- |                                             |
- |--- signature over the nonce ---------------&gt;|  verify proof of possession
- |                                             |  check local ban list
- |                                             |  enqueue tap in outbox
- |                                             |
- |&lt;-- "OK" / "FAIL" / "BANNED" ----------------|  result
- |                                             |
- |                                             |  background sync → API</code></pre>
+<pre class="code-block" tabindex="0" role="region" aria-label="Diagram handshake'u: wymiana certyfikatu, nonce i podpisu między kartą a bramą"><code>Karta                                          Brama
+ |                                              |
+ |--- Certyfikat podpisany przez CA ----------->|  analiza certyfikatu
+ |                                              |  weryfikacja podpisu CA + ważność
+ |                                              |  sprawdzenie algorytmu klucza pub.
+ |                                              |
+ |<----- losowy nonce (wyzwanie) ---------------|  lub INVALID_CERT / KEY_NOT_SECURE
+ |                                              |
+ |------ podpis nonce'a ----------------------->|  weryfikacja dowodu posiadania
+ |                                              |  sprawdzenie lokalnej czarnej listy
+ |                                              |  kolejkowanie zdarzenia w outboxie
+ |                                              |
+ |<----- "OK" / "FAIL" / "BANNED" --------------|  wynik
+ |                                              |
+ |                                              |  synchronizacja w tle → API</code></pre>
         </div>
 
         <div class="response-panel">
-          <h3>What the gate says</h3>
+          <h3>Odpowiedzi bramy</h3>
           <ul class="response-list">
-            <li><code class="response-code status-ok">OK</code><span>Certificate valid, key strong enough, signature verified. The tap is logged.</span></li>
-            <li><code class="response-code">FAIL</code><span>The nonce signature did not verify.</span></li>
-            <li><code class="response-code">INVALID_CERT</code><span>Not a certificate, wrong CA signature, or outside the validity window.</span></li>
-            <li><code class="response-code">KEY_NOT_SECURE</code><span>Unsupported algorithm, RSA &lt; 2048, or ECDSA &lt; 256 bits.</span></li>
-            <li><code class="response-code">BANNED</code><span>Certificate and signature are valid, but the card is banned.</span></li>
+            <li><code class="response-code status-ok">OK</code><span>Certyfikat poprawny, klucz wystarczająco silny, podpis zweryfikowany. Zdarzenie zapisane.</span></li>
+            <li><code class="response-code">FAIL</code><span>Podpis nonce'a nie został zweryfikowany.</span></li>
+            <li><code class="response-code">INVALID_CERT</code><span>Brak certyfikatu, błędny podpis CA lub utrata ważności.</span></li>
+            <li><code class="response-code">KEY_NOT_SECURE</code><span>Nieobsługiwany algorytm, RSA &lt; 2048, lub ECDSA &lt; 256 bitów.</span></li>
+            <li><code class="response-code">BANNED</code><span>Certyfikat i podpis są poprawne, ale karta jest zablokowana.</span></li>
           </ul>
-          <p class="response-note">The gate caches the CA public key and ban list locally, so it can still make decisions while the API is unreachable.</p>
+          <p class="response-note">Brama cache'uje klucz publiczny CA i czarną listę lokalnie, więc może podejmować decyzje nawet gdy API jest nieosiągalne.</p>
         </div>
       </div>
     </section>
@@ -343,56 +342,55 @@
     <section class="section shell" id="design">
       <header class="section-head">
         <p class="section-index">04</p>
-        <h2>Design notes</h2>
-        <p class="section-note">The interesting part of a fare system is not the happy tap — it’s what happens when the network, the API, or the power goes away.</p>
+        <h2>Uwagi projektowe</h2>
+        <p class="section-note">W systemach opłat za przejazdy najciekawsza nie jest „szczęśliwa ścieżka” — lecz to, co dzieje się, gdy zawodzi sieć, API lub zasilanie.</p>
       </header>
 
-      <div class="notes-grid">
-        <article class="note">
-          <span class="note-num">01</span>
+      <div class="notes-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="note flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+          <span class="note-num font-bold text-gray-400">01</span>
           <div>
-            <h3>Certificate-based identity</h3>
-            <p>Cards present SSH certificates signed by the gate’s CA. The certificate binds a key to a card ID and a validity window; the gate checks all three.</p>
+            <h3 class="font-semibold mb-1">Tożsamość oparta na certyfikatach</h3>
+            <p>Karty przedstawiają certyfikaty SSH podpisane przez CA bramy. Certyfikat wiąże klucz z identyfikatorem karty i oknem ważności; brama sprawdza wszystkie trzy.</p>
           </div>
         </article>
 
-        <article class="note">
-          <span class="note-num">02</span>
+        <article class="note flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+          <span class="note-num font-bold text-gray-400">02</span>
           <div>
-            <h3>Proof of possession</h3>
-            <p>A valid certificate is not a free pass. The card must sign a fresh random nonce with its private key, so a stolen certificate alone does not open the gate.</p>
+            <h3 class="font-semibold mb-1">Dowód posiadania (Proof of Possession)</h3>
+            <p>Poprawny certyfikat nie jest darmową przepustką. Karta musi podpisać świeży, losowy nonce za pomocą swojego klucza prywatnego, aby zapobiec otwarciu bramy przez samą kradzież certyfikatu.</p>
           </div>
         </article>
 
-        <article class="note">
-          <span class="note-num">03</span>
+        <article class="note flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+          <span class="note-num font-bold text-gray-400">03</span>
           <div>
-            <h3>Durable outbox</h3>
-            <p>Each accepted tap is written to SQLite before the gate responds. Restarts reset in-flight entries, and sent rows are cleaned up so the queue stays bounded.</p>
+            <h3 class="font-semibold mb-1">Trwała kolejka wyjściowa (Durable Outbox)</h3>
+            <p>Każde zaakceptowane zdarzenie jest zapisywane w SQLite przed udzieleniem odpowiedzi. Restarty resetują wpisy w toku, a wysłane wiersze są usuwane, aby kolejka pozostała ograniczona.</p>
           </div>
         </article>
 
-        <article class="note">
-          <span class="note-num">04</span>
+        <article class="note flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+          <span class="note-num font-bold text-gray-400">04</span>
           <div>
-            <h3>Retries with backoff</h3>
-            <p>Permanent validation failures are dropped; auth, rate-limit, server, and transport errors stay queued with a randomized delay. Nothing is acknowledged until the API says so.</p>
+            <h3 class="font-semibold mb-1">Ponowienia z wykładniczym czasem oczekiwania (Backoff)</h3>
+            <p>Krytyczne błędy walidacji są odrzucane; błędy autoryzacji, limitów, serwera i transportu pozostają w kolejce z losowym opóźnieniem. Nic nie jest potwierdzone, dopóki API nie zwróci potwierdzenia (ack).</p>
           </div>
         </article>
 
-        <article class="note">
-          <span class="note-num">05</span>
+        <article class="note flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+          <span class="note-num font-bold text-gray-400">05</span>
           <div>
-            <h3>Key-strength floor</h3>
-            <p>Ed25519 is accepted outright. ECDSA needs at least 256 bits; RSA needs at least 2048. DSA and Ed448 are rejected rather than guessed at.</p>
+            <h3 class="font-semibold mb-1">Minimalny próg siły klucza</h3>
+            <p>Ed25519 jest akceptowany bezwarunkowo. ECDSA wymaga minimum 256 bitów; RSA wymaga minimum 2048. DSA i Ed448 są odrzucane zamiast być zgadywane.</p>
           </div>
         </article>
 
         <article class="note">
           <span class="note-num">06</span>
-          <div>
-            <h3>Observable by default</h3>
-            <p>Every stage logs with a component tag and a clear <code>[*]</code> / <code>[!]</code> prefix, so a failed tap can be traced from card to outbox without a debugger.</p>
+          <h3>Obserwowalność z definicji (Observable by default)</td>
+          <p>Każdy etap logowania posiada tag komponentu i wyraźny prefiks <code class="language-text">[*]</code> / <code class="language-text">[!]</code>, tak aby nieudana autoryzacja mogła być śledzona od karty do outboxu bez debuggera.</p>
           </div>
         </article>
       </div>
@@ -401,15 +399,15 @@
     <section class="section shell" id="repositories">
       <header class="section-head">
         <p class="section-index">05</p>
-        <h2>Repositories</h2>
-        <p class="section-note">Each service lives in its own repository and ships with its own README, setup steps, and troubleshooting notes.</p>
+        <h2>Repozytoria</h2>
+        <p class="section-note">Każda usługa znajduje się w osobnym repozytorium i posiada własny plik README, instrukcje konfiguracji oraz uwagi dotyczące troubleshootingu.</p>
       </header>
 
       <div class="repo-list">
         <a class="repo-row" href="https://github.com/bgnacinski/conductor-api" target="_blank" rel="noopener">
           <span class="repo-index">01</span>
           <span class="repo-name">conductor-api</span>
-          <span class="repo-desc">Fare-card issuer, CA public key and ban-list endpoint, and the sink for entry/exit taps.</span>
+          <span class="repo-desc">Wystawca kart przejazdowych, endpointy klucza publicznego CA i czarnej listy oraz sink dla zdarzeń wejścia/wyjścia.</span>
           <span class="repo-meta">PHP · CodeIgniter 4 · MIT</span>
           <span class="repo-arrow" aria-hidden="true">↗</span>
         </a>
@@ -417,16 +415,16 @@
         <a class="repo-row" href="https://github.com/bgnacinski/conductor-ticketer" target="_blank" rel="noopener">
           <span class="repo-index">02</span>
           <span class="repo-name">conductor-ticketer</span>
-          <span class="repo-desc">The gate: async TCP server, certificate verifier, nonce challenge, ban-list cache, and SQLite outbox sync.</span>
-          <span class="repo-meta">Python · asyncio · MIT</span>
+          <span class="repo-desc">Brama: asynchroniczny serwer TCP, weryfikator certyfikatów, wyzwanie nonce, cache czarnej listy i synchronizacja SQLite outbox.</span>
+          <span class="repo-meta">Python · MIT</span>
           <span class="repo-arrow" aria-hidden="true">↗</span>
         </a>
 
         <a class="repo-row" href="https://github.com/bgnacinski/conductor-ticketer-client" target="_blank" rel="noopener">
           <span class="repo-index">03</span>
           <span class="repo-name">conductor-ticketer-client</span>
-          <span class="repo-desc">The mock card: loads an SSH key and certificate, answers the gate’s nonce challenge, and reports the tap result.</span>
-          <span class="repo-meta">Python · cryptography · MIT</span>
+          <span class="repo-desc">Symulowana karta: ładuje klucz SSH i certyfikat, odpowiada na wyzwanie nonce bramy i raportuje wynik autoryzacji.</span>
+          <span class="repo-meta">Python · MIT</span>
           <span class="repo-arrow" aria-hidden="true">↗</span>
         </a>
       </div>
@@ -435,38 +433,38 @@
     <section class="section shell" id="stack">
       <header class="section-head">
         <p class="section-index">06</p>
-        <h2>Under the hood</h2>
-        <p class="section-note">No build pipeline and no hidden services. The components use tools that make the protocol visible.</p>
+        <h2>Pod maską</h2>
+        <p class="section-note">Brak potoków budowania (build pipeline) i ukrytych usług. Komponenty wykorzystują narzędzia, które czynią protokół transparentnym.</p>
       </header>
 
       <div class="stack-grid">
         <div class="stack-copy">
-          <h2 class="stack-title">Small stack, sharp edges.</h2>
-          <p>The card and gate are purpose-built Python programs; the API is a conventional PHP application. Nothing gets in the way of the handshake.</p>
+          <h2 class="stack-title">Specyfikacja techniczna</h2>
+          <p>Karta i brama to dedykowane programy w Pythonie; API to konwencjonalna aplikacja w PHP. Nic nie stoi na przeszkodzie handshake'owi.</p>
           <dl class="stack-list">
             <div><dt>Runtime</dt><dd>Python 3.14 · PHP 8.2+ · CodeIgniter 4</dd></div>
-            <div><dt>Networking &amp; crypto</dt><dd>asyncio · OpenSSH · cryptography · Ed25519 · ECDSA · RSA</dd></div>
-            <div><dt>Data &amp; transport</dt><dd>SQLite / aiosqlite · httpx · REST + bearer auth</dd></div>
+            <div><dt>Sieci i kryptografia</dt><dd>asyncio · OpenSSH · Certyfikaty SSH · Ed25519 · ECDSA · RSA</dd></div>
+            <div><dt>Dane i transport</dt><dd>SQLite / aiosqlite · httpx · REST + bearer auth</dd></div>
           </dl>
         </div>
 
         <div class="run-card">
           <div class="code-head">
-            <span>quick start</span>
-            <button class="copy-btn" type="button" data-copy aria-live="polite" aria-label="Copy clone commands">Copy</button>
+            <span>szybki start</span>
+            <button class="copy-btn" type="button" data-copy aria-live="polite" aria-label="Kopiuj komendy klonowania">Kopiuj</button>
           </div>
-<pre class="code-block" tabindex="0" role="region" aria-label="Commands to clone the Conductor repositories"><code>git clone https://github.com/bgnacinski/conductor-api.git
+<pre class="code-block" tabindex="0" role="region" aria-label="Komendy do klonowania repozytoriów Conductor"><code>git clone https://github.com/bgnacinski/conductor-api.git
 git clone https://github.com/bgnacinski/conductor-ticketer.git
 git clone https://github.com/bgnacinski/conductor-ticketer-client.git</code></pre>
           <ol class="run-steps">
-            <li><span>01</span><p><strong>API</strong> — configure the CodeIgniter app and start it.</p></li>
-            <li><span>02</span><p><strong>Gate</strong> — create a venv, install requirements, set <code>.env</code>, run <code>main.py</code>.</p></li>
-            <li><span>03</span><p><strong>Card</strong> — generate a key, sign it with the gate’s CA, run the client.</p></li>
+            <li><span>01</span><p><strong>API</strong> — skonfiguruj aplikację CodeIgniter i uruchom ją.</p></li>
+            <li><span>02</span><p><strong>Brama</strong> — utwórz venv, zainstaluj zależności, ustaw <code class="language-text">.env</code>, uruchom <code class="language-text">main.py</code>.</p></li>
+            <li><span>03</span><p><strong>Karta</strong> — wygeneruj klucz, podpisz go certyfikatem CA bramy, uruchom klienta.</p></li>
           </ol>
-          <p class="run-note">The gate and client READMEs contain the full walkthrough: CA key creation, certificate signing, environment variables, and outbox sync options.</p>
+          <p class="run-note">Pliki README w repozytoriach bramy i klienta zawierają pełną instrukcję: tworzenie kluczy CA, podpisywanie certyfikatów, zmienne środowiskowe i opcje synchronizacji outboxu.</p>
           <div class="run-actions">
-            <a href="https://github.com/bgnacinski/conductor-ticketer#how-to-run" target="_blank" rel="noopener">Gate setup <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/bgnacinski/conductor-ticketer-client#how-to-run" target="_blank" rel="noopener">Card setup <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/bgnacinski/conductor-ticketer#how-to-run" target="_blank" rel="noopener">Konfiguracja bramy <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/bgnacinski/conductor-ticketer-client#how-to-run" target="_blank" rel="noopener">Konfiguracja karty <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
@@ -476,11 +474,11 @@ git clone https://github.com/bgnacinski/conductor-ticketer-client.git</code></pr
       <div class="closing-grid">
         <div>
           <p class="meta">Conductor / open source</p>
-          <h2>More projects, same curiosity.</h2>
+          <h2>Więcej projektów, ta sama ciekawość.</h2>
         </div>
         <div class="actions">
-          <a class="button" href="../">Back to profile <span aria-hidden="true">→</span></a>
-          <a class="link" href="https://github.com/bgnacinski?tab=repositories" target="_blank" rel="noopener">All repositories <span aria-hidden="true">↗</span></a>
+          <a class="button" href="../">Powrót do profilu <span aria-hidden="true">→</span></a>
+          <a class="link" href="https://github.com/bgnacinski?tab=repositories" target="_blank" rel="noopener">Wszystkie repozytoria <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -490,16 +488,16 @@ git clone https://github.com/bgnacinski/conductor-ticketer-client.git</code></pr
     <div class="shell footer-inner">
       <p class="footer-brand">Conductor <span>· by Borys Gnaciński</span></p>
       <div class="footer-links">
-        <a href="../">Profile</a>
-        <a href="#architecture">Architecture</a>
+        <a href="../">Profil</a>
+        <a href="#architecture">Architektura</a>
         <a href="https://github.com/bgnacinski/conductor-api" target="_blank" rel="noopener">API</a>
-        <a href="https://github.com/bgnacinski/conductor-ticketer" target="_blank" rel="noopener">Gate</a>
-        <a href="https://github.com/bgnacinski/conductor-ticketer-client" target="_blank" rel="noopener">Card</a>
+        <a href="https://github.com/bgnacinski/conductor-ticketer" target="_blank" rel="noopener">Brama</a>
+        <a href="https://github.com/bgnacinski/conductor-ticketer-client" target="_blank" rel="noopener">Karta</a>
       </div>
-      <p class="footer-note">© <span data-year>2026</span> · MIT licensed</p>
+      <p class="footer-note">© <span data-year>2026</span> · Licencja MIT</p>
     </div>
     <div class="shell footer-ai">
-      <p>Site written by the AI model <strong>DeepSeek V4.1 Flash</strong>.</p>
+      <p>Strona napisana przy wsparciu modeli AI <strong>DeepSeek V4.1 Flash</strong> oraz <strong>Gemma 4</strong>.</p>
     </div>
   </footer>
 
